@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-../MLops
-=======
 venv/
 .venv
 env/
 .env
->>>>>>> ed7b70a433a333085606ff3d6a46ea8f325593c2
+
