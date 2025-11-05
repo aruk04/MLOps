@@ -6,11 +6,15 @@ from datetime import datetime
 LOG_FILE = f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log"
 
 # Create 'logs' directory if it doesn't exist
-logs_path = os.path.join(os.getcwd(), "logs")
+logs_path = os.path.join(os.getcwd(), "src", "logs")
 os.makedirs(logs_path, exist_ok=True)
 
 # Define full log file path
 LOG_FILE_PATH = os.path.join(logs_path, LOG_FILE)
+
+# Clear any existing handlers to avoid duplicate or missing logs
+for handler in logging.root.handlers[:]:
+    logging.root.removeHandler(handler)
 
 # Configure logging
 logging.basicConfig(
@@ -19,6 +23,7 @@ logging.basicConfig(
     level=logging.INFO,
 )
 
-if __name__ == "__main__":
-    logging.info("Logging has started")
-    print(f"Log file created at: {LOG_FILE_PATH}")
+# Export the configured logger (optional, but neat)
+logger = logging.getLogger(__name__)
+
+print(f"Logger initialized — logs will be written to: {LOG_FILE_PATH}")
